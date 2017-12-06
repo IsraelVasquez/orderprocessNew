@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package orderprocess;
-
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,6 +23,7 @@ public class OrderProcess {
      */
     public static void main(String[] args) {
         ArrayList orderList = new ArrayList();
+        String props = "";
         try(BufferedReader myReader = new BufferedReader(new FileReader(new File("/Users/ivasquez/NetBeansProjects/Filereader/OrderProcess/src/orderprocess/Orders.txt"))))
         {                     
             System.out.println("Start processing orders");
@@ -33,12 +32,13 @@ public class OrderProcess {
             String line = myReader.readLine();
             while(line != null) 
             {
-                orderList.add(line);
+                
+                props += line;
                 fileContent.append(line);
                 fileContent.append(System.lineSeparator());
                 line = myReader.readLine();
             }
-            System.out.println(orderList);
+            System.out.println(props);
         }
         catch(IOException e)
         {
