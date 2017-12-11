@@ -22,28 +22,35 @@ public class OrderProcess {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ArrayList orderList = new ArrayList();
-        String props = "";
-        try(BufferedReader myReader = new BufferedReader(new FileReader(new File("/Users/ivasquez/NetBeansProjects/Filereader/OrderProcess/src/orderprocess/Orders.txt"))))
+        System.out.println(ReadWrite());
+        
+        
+    }
+    private static String ReadWrite()
+    {
+        StringBuilder fileContent = new StringBuilder();/**used to store the lines read from the file.**/
+        
+        try(BufferedReader myReader = new BufferedReader(new FileReader(new File("/Users/ivasquez/NetBeansProjects/Filereader/OrderProcess/src/orderprocess/Orders.txt"))))/** locate the text file for reading.**/
         {                     
-            System.out.println("Start processing orders");
-            BufferedWriter myWriter = new BufferedWriter(new FileWriter(new File("/Users/ivasquez/NetBeansProjects/Filereader/OrderProcess/src/orderprocess/OrdersProcessed.txt")));
-            StringBuilder fileContent = new StringBuilder();
-            String line = myReader.readLine();
-            while(line != null) 
+            System.out.println("Start processing orders");/**begin manipulating text**/
+                BufferedWriter myWriter = new BufferedWriter(new FileWriter(new File("/Users/ivasquez/NetBeansProjects/Filereader/OrderProcess/src/orderprocess/OrdersProcessed.txt")));/**write to specified file.**/
+                    String line = myReader.readLine();/**the lines are read and stored into a string**/
+                        
+            while(line != null)/**until we finish reading the file, do the following.**/ 
             {
-                
-                props += line;
-                fileContent.append(line);
-                fileContent.append(System.lineSeparator());
-                line = myReader.readLine();
+                fileContent.append(line);/**puts the line from the file into the StringBuilder**/
+                fileContent.append(System.lineSeparator());/**creates a new line in the StringBuilder for the next line to occupy**/
+                line = myReader.readLine();/**the file continues to be read.**/
             }
-            System.out.println(props);
+            
         }
+        
         catch(IOException e)
         {
             System.out.println(e);
         }
+        return fileContent.toString();
     }
+   
 }
 
