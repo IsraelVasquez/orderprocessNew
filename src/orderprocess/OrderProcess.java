@@ -51,6 +51,9 @@ public class OrderProcess {
                     System.out.println("Part Number: "+ products[1]);
                     System.out.println("Price: "+ products[2]);
                     System.out.println("Quantity: "+ products[3]);
+                    System.out.println("Tax: "+ Ntax);
+                    System.out.println("Shipping: "+ Nshipping);
+                    System.out.println("Total: "+ );
                     System.out.println(System.lineSeparator());
                     
                     
