@@ -22,40 +22,39 @@ public class OrderProcess {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(ReadWrite(tax(),shipping()));
+        ReadWrite(tax(),shipping());
         
         
     }
-    private static String ReadWrite(double tax, double shipping)
+    private static void ReadWrite(double tax, double shipping)
     {
         String read = "Orders.txt";
         String write = "OrdersProcessed.txt";
-        StringBuilder fileContent = new StringBuilder();/**used to store the lines read from the file.**/
-        
+        Double Ntax = tax;
+        Double Nshipping = shipping;
         try(BufferedReader myReader = new BufferedReader(new FileReader(new File("/Users/ivasquez/NetBeansProjects/Filereader/OrderProcess/src/orderprocess/"+ read))))/** locate the text file for reading.**/
         {                
             try(BufferedWriter myWriter = new BufferedWriter(new FileWriter(new File("/Users/ivasquez/NetBeansProjects/Filereader/OrderProcess/src/orderprocess/" + write))))/**write to specified file.**/
             {
 
                 myReader.readLine();/**reads the first line of the list**/
-                System.out.println("Start processing orders");/**tells the user that we have begun the process.**/
+                System.out.println("~Starting to process orders~");/**tells the user that we have begun the process.**/
                     String line = myReader.readLine();/**one line is read and stored into this string**/
                 
                 while(line != null)/**until we finish reading the file, do the following.**/ 
                 {
                     
                     
-                    String[] products = line.split("\\|");
+                    String[] products = line.split("\\|");//divide the data for each product into the array.
                     
-                    products[0] = "Order ID: "+" ";
-                    products[1] = "Order ID: " +" ";
-                    products[2] = "Order ID: " +" ";
-                    products[3] = "Order ID: " +" ";
-                    products[4] = "Order ID: " +" ";
+                    System.out.println("order ID: "+ products[0]); 
+                    System.out.println("Part Number: "+ products[1]);
+                    System.out.println("Price: "+ products[2]);
+                    System.out.println("Quantity: "+ products[3]);
+                    System.out.println(System.lineSeparator());
                     
-                 
-                    //fileContent.append();/**puts the line from the file into the StringBuilder**/
-                    fileContent.append(System.lineSeparator());/**creates a new line in the StringBuilder for the next string to occupy**/
+                    
+                    
                     line = myReader.readLine();/**the file continues to be read.**/
                 }
             }
@@ -72,8 +71,8 @@ public class OrderProcess {
             System.out.println(e);
             System.out.println("could not read file " + read);
         }
-        return fileContent.toString();
-    }
+    }    
+    
     
     private static double tax(){
        final double tax = .02;
